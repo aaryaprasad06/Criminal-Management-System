@@ -1,5 +1,6 @@
 from rest_framework import viewsets,status,permissions
 from rest_framework.decorators import action
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -30,6 +31,7 @@ class CriminalViewSet(viewsets.ModelViewSet):
     queryset = Criminal.objects.all()
     serializer_class = CriminalSerializer
     permission_classes = [IsAdminUserOrReadOnly]
+    parser_classes = (MultiPartParser, FormParser)
 class CrimeViewSet(viewsets.ModelViewSet):
     queryset = Crime.objects.all()
     serializer_class = CrimeSerializer
